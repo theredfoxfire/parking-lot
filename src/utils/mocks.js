@@ -1,0 +1,18 @@
+export const parkingSpotsMock = [
+  { id: 1, occupied: false, size: "small" },
+  { id: 2, occupied: false, size: "medium" },
+  { id: 3, occupied: false, size: "large" },
+  { id: 4, occupied: false, size: "small" },
+  { id: 5, occupied: false, size: "medium" },
+  { id: 6, occupied: false, size: "large" },
+  { id: 7, occupied: false, size: "small" },
+  { id: 8, occupied: false, size: "medium" },
+  { id: 11, occupied: false, size: "small" },
+  { id: 22, occupied: false, size: "medium" },
+  { id: 33, occupied: false, size: "large" },
+  { id: 42, occupied: false, size: "small" },
+  { id: 52, occupied: false, size: "medium" },
+  { id: 62, occupied: false, size: "large" },
+  { id: 72, occupied: false, size: "small" },
+  { id: 82, occupied: false, size: "medium" },
+];
