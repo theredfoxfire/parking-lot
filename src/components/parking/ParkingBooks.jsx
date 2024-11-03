@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   DialogActionTrigger,
   DialogBody,
@@ -24,11 +24,15 @@ export const ParkingBooks = (props) => {
   } = props;
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useEffect(() => {
+      setIsSubmitted(() => false);
+  }, [selectedSpot]);
+
   const handleSubmit = useCallback(() => {
     onHandleSubmit();
     setIsSubmitted(() => true);
   }, [onHandleSubmit, setIsSubmitted]);
-  
+
   const handleCloseModal = useCallback(() => {
     onModalAction(false);
     setIsSubmitted(() => false);
@@ -75,10 +79,7 @@ export const ParkingBooks = (props) => {
         </DialogBody>
         <DialogFooter>
           <DialogActionTrigger asChild>
-            <Button
-              variant="outline"
-              onClick={handleCloseModal}
-            >
+            <Button variant="outline" onClick={handleCloseModal}>
               Close
             </Button>
           </DialogActionTrigger>

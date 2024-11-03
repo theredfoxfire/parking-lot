@@ -131,7 +131,7 @@ const ParkingMap = () => {
       toaster.error({
         title: "Pesanan Gagal",
         description:
-          "Pesanan parkir gagal silahkan lengkapi formulir terlbih dahulu!",
+          "Pesanan parkir gagal silahkan lengkapi formulir terlebih dahulu!",
         duration: 6000,
         position: "top-right",
       });
@@ -163,7 +163,7 @@ const ParkingMap = () => {
       toaster.success({
         title: "Pesanan Berhasil",
         description: "Pesanan parkir berhasil disimpan!",
-        duration: 6000,
+        duration: 3000,
         position: "top-right",
       });
       updateStateAction({
