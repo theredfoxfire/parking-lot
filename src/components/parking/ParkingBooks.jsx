@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import {
   DialogActionTrigger,
   DialogBody,
@@ -7,8 +8,9 @@ import {
   DialogRoot,
   DialogTitle,
 } from "../libs-chakra-ui/dialog";
-import { Button, Box, Text } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import { ParkingBookingNew } from "./ParkingBookingNew";
+import { ParkingBookingDetails } from "./ParkingBookingDetails";
 
 export const ParkingBooks = (props) => {
   const {
@@ -20,9 +22,17 @@ export const ParkingBooks = (props) => {
     selectedBooking,
     selectedSpot,
   } = props;
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = useCallback(() => {
+    onHandleSubmit();
+    setIsSubmitted(() => true);
+  }, [onHandleSubmit, setIsSubmitted]);
+
   if (!isModalOpen) {
     return null;
   }
+
   return (
     <DialogRoot
       placement={"center"}
@@ -40,22 +50,10 @@ export const ParkingBooks = (props) => {
         </DialogHeader>
         <DialogBody>
           {selectedBooking && (
-            <Box
-              p={4}
-              borderWidth="1px"
-              borderRadius="md"
-              mb={4}
-              boxShadow="md"
-            >
-              <Text fontWeight="bold" mb={2}>
-                Tempat Parkir: #{selectedBooking.spotId}
-              </Text>
-              <Text>Nama: {selectedBooking.name}</Text>
-              <Text>Ukuran Kendaraan: {String(selectedSpot.size).toUpperCase()}</Text>
-              <Text>Nomor Kendaraan: {selectedBooking.vehicleNumber}</Text>
-              <Text>Waktu Mulai: {selectedBooking.startTime}</Text>
-              <Text>Durasi: {selectedBooking.duration} Jam</Text>
-            </Box>
+            <ParkingBookingDetails
+              selectedBooking={selectedBooking}
+              selectedSpot={selectedSpot}
+            />
           )}
           {!selectedBooking && (
             <>
@@ -63,6 +61,7 @@ export const ParkingBooks = (props) => {
                 Tempat Parkir Ukuran: {String(selectedSpot.size).toUpperCase()}
               </Text>
               <ParkingBookingNew
+                isSubmitted={isSubmitted}
                 formData={formData}
                 onHandleInputChange={onHandleInputChange}
               />
@@ -78,7 +77,7 @@ export const ParkingBooks = (props) => {
               Close
             </Button>
           </DialogActionTrigger>
-          {!selectedBooking && <Button onClick={onHandleSubmit}>Save</Button>}
+          {!selectedBooking && <Button onClick={handleSubmit}>Save</Button>}
         </DialogFooter>
       </DialogContent>
     </DialogRoot>

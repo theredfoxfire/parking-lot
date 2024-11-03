@@ -6,13 +6,13 @@ import {
 } from "../libs-chakra-ui/number-input";
 
 export const ParkingBookingNew = (props) => {
-  const { formData, onHandleInputChange } = props;
+  const { formData, onHandleInputChange, isSubmitted} = props;
   return (
     <Fieldset.Root size="lg" maxW="md" marginBottom={"12"}>
       <Fieldset.Content>
         <Field
           label="Nama"
-          invalid={!!formData.errors.name}
+          invalid={!!formData.errors.name && isSubmitted}
           errorText={formData.errors.name}
         >
           <Input
@@ -24,7 +24,7 @@ export const ParkingBookingNew = (props) => {
         </Field>
         <Field
           label="Nomor Kendaraan"
-          invalid={!!formData.errors.vehicleNumber}
+          invalid={!!formData.errors.vehicleNumber && isSubmitted}
           errorText={formData.errors.vehicleNumber}
         >
           <Input
@@ -36,7 +36,7 @@ export const ParkingBookingNew = (props) => {
         </Field>
         <Field
           label="Durasi Parkir (Jam)"
-          invalid={!!formData.errors.duration}
+          invalid={!!formData.errors.duration && isSubmitted}
           errorText={formData.errors.duration}
         >
           <NumberInputRoot width="200px">
