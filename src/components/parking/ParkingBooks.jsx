@@ -28,6 +28,11 @@ export const ParkingBooks = (props) => {
     onHandleSubmit();
     setIsSubmitted(() => true);
   }, [onHandleSubmit, setIsSubmitted]);
+  
+  const handleCloseModal = useCallback(() => {
+    onModalAction(false);
+    setIsSubmitted(() => false);
+  }, [onModalAction, setIsSubmitted]);
 
   if (!isModalOpen) {
     return null;
@@ -38,7 +43,7 @@ export const ParkingBooks = (props) => {
       placement={"center"}
       defaultOpen={true}
       motionPreset="slide-in-bottom"
-      onInteractOutside={() => onModalAction(!isModalOpen)}
+      onInteractOutside={handleCloseModal}
     >
       <DialogContent>
         <DialogHeader>
@@ -72,7 +77,7 @@ export const ParkingBooks = (props) => {
           <DialogActionTrigger asChild>
             <Button
               variant="outline"
-              onClick={() => onModalAction(!isModalOpen)}
+              onClick={handleCloseModal}
             >
               Close
             </Button>
